@@ -741,11 +741,20 @@ public class ScreenWindow extends Frame implements WindowListener, Runnable, Key
 									scan.nextLine();
 								}
 								else
+								{
 									tempTraj = Integer.parseInt(first);
+								}
 								int angle = (int)scan.nextDouble();
 								int dir = scan.nextInt();
-								Trajectory t = map.get(tempTraj);
+								Trajectory t = null;
+								
+								for(int i = 0; i < map.size(); i++){
+									if(map.get(i).getID() == tempTraj){
+										t = map.get(i);
+									}
+								}
 								Robot rob = new Robot(t, angle, dir);
+								System.out.println(rob.getTraj().getID());
 								t.addBot(rob);
 								listBot.add(rob);
 							}
